@@ -1,0 +1,23 @@
+# コンパイル後のJavaScriptファイルが格納されるディレクトリ
+# Compiled JavaScript files will be stored in this directory.
+dist/
+
+# プロジェクトの依存パッケージがインストールされるディレクトリ
+# Project dependencies are installed in this directory.
+node_modules/
+
+# 環境変数を定義するファイル (APIキーなどの機密情報を含む)
+# This file stores environment variables (including sensitive data like API keys).
+.env
+
+# TypeScriptのビルド情報キャッシュファイル
+# TypeScript build info cache file.
+tsconfig.tsbuildinfo
+
+# macOS固有のファイル
+# macOS-specific file
+.DS_Store
+
+# Windows固有のファイル
+# Windows-specific file
+Thumbs.db
