@@ -5,7 +5,8 @@
   "main": "dist/index.js",
   "scripts": {
     "clean": "rm -rf dist",
-    "build": "npm run clean && tsc --project tsconfig.json --listEmittedFiles && cpx \"public/**/*\" dist/public",
+    "copy-assets": "cpx \"public/**/*\" dist/public",
+    "build": "npm run clean && tsc src/index.ts --outDir dist --module commonjs --target es2020 --esModuleInterop --listEmittedFiles && npm run copy-assets",
     "postbuild": "echo '--- Listing dist directory after build ---' && ls -R dist",
     "start": "node dist/index.js",
     "dev": "ts-node src/index.ts"
