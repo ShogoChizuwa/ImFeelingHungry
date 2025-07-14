@@ -1,24 +1,31 @@
 import express from 'express';
 import path from 'path';
+// PrismaClientをインポートします
+import { PrismaClient } from '@prisma/client';
 
-// Expressアプリケーションのインスタンスを作成
+// PrismaClientのインスタンスを作成
+const prisma = new PrismaClient();
 const app = express();
-// サーバーが待ち受けるポート番号。Renderなどの環境では環境変数で指定されることがあるため、
-// process.env.PORTがあればそれを使用し、なければ3000番ポートを使用します。
 const PORT = process.env.PORT || 3000;
 
-// 静的ファイルを配信するためのミドルウェアを設定
-// 'public'ディレクトリにあるHTMLやCSS、JavaScriptファイルにブラウザからアクセスできるようになります。
+// publicディレクトリ内の静的ファイルを配信するための設定
 app.use(express.static(path.join(__dirname, '..', 'public')));
 
-// ルートURL ('/') にGETリクエストがあった場合に実行される処理
-// 今回は静的ファイル配信がメインなので、このルートは必須ではありませんが、
-// APIエンドポイントとして残しておくと後々便利です。
-app.get('/api/hello', (req, res) => {
-  res.json({ message: 'Hello, World!' });
+// /api/restaurants というURLにGETリクエストが来た時の処理
+app.get('/api/restaurants', async (req, res) => {
+  try {
+    // データベースから全てのレストランデータを取得します
+    const restaurants = await prisma.restaurant.findMany();
+    // 取得したデータをJSON形式でクライアントに返します
+    res.json(restaurants);
+  } catch (error) {
+    // エラーが発生した場合は、コンソールにログを出力し、500エラーを返します
+    console.error("Failed to fetch restaurants:", error);
+    res.status(500).json({ error: 'データベースからレストラン情報を取得できませんでした。' });
+  }
 });
 
-// 指定したポートでサーバーを起動し、リクエストを待ち受けます
+// サーバーを起動します
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
