@@ -4,10 +4,11 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "clean": "rm -rf dist",
+    "prebuild": "echo '--- Listing root directory before build ---' && ls -la",
+    "build": "tsc",
+    "postbuild": "npm run copy-assets && echo '--- Listing dist directory after build ---' && ls -R dist",
     "copy-assets": "cpx \"public/**/*\" dist/public",
-    "build": "npm run clean && tsc --project tsconfig.json && npm run copy-assets",
-    "postbuild": "echo '--- Listing contents of dist directory after build ---' && ls -R dist",
+    "clean": "rm -rf dist",
     "start": "node dist/index.js",
     "dev": "ts-node src/index.ts"
   },
