@@ -1,13 +1,13 @@
 {
   "name": "imfeelinghungry",
-   "version": "1.0.0",
+  "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
     "clean": "rm -rf dist",
     "copy-assets": "cpx \"public/**/*\" dist/public",
     "build": "npm run clean && tsc && npm run copy-assets",
-    "start": "node dist/index.js",
+    "start": "echo '--- Listing contents of dist directory ---' && ls -R dist && echo '--- Attempting to start server ---' && node dist/index.js",
     "dev": "ts-node src/index.ts"
   },
   "keywords": [],
