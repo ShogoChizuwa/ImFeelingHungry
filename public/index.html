@@ -3,23 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>飲食店ランダムおすすめアプリ</title>
-    <style>
-        body {
-            font-family: sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f0f2f5;
-        }
-        h1 {
-            color: #333;
-        }
-    </style>
+    <title>I'm Feeling Hungry</title>
+    <!-- CSSファイルを読み込み -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>ようこそ！飲食店ランダムおすすめアプリへ</h1>
+    <div class="container">
+        <h1>I'm Feeling Hungry</h1>
+        <p>今日のひようら飯は…</p>
+        
+        <!-- おすすめを見るボタン -->
+        <button id="recommend-button">ここに行け！</button>
+        
+        <!-- おすすめされたレストランの情報を表示するエリア -->
+        <div id="restaurant-display"></div>
+    </div>
+
+    <!-- JavaScriptファイルを読み込み (bodyの最後で読み込むのが定石です) -->
+    <script src="script.js"></script>
 </body>
 </html>

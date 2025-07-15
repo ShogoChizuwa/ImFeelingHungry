@@ -1,0 +1,95 @@
+/* 基本的なページ全体のスタイル */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #f0f2f5;
+    color: #333;
+    text-align: center;
+}
+
+.container {
+    background: white;
+    padding: 2rem 3rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    width: 90%;
+}
+
+h1 {
+    color: #1a1a1a;
+    margin-bottom: 0.5rem;
+}
+
+p {
+    color: #666;
+    margin-bottom: 2rem;
+}
+
+/* ボタンのスタイル */
+#recommend-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+#recommend-button:hover {
+    background-color: #0056b3;
+}
+
+#recommend-button:active {
+    transform: scale(0.98);
+}
+
+/* レストラン表示エリアのスタイル */
+#restaurant-display {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease;
+}
+
+.restaurant-card {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.restaurant-card h2 {
+    margin: 0 0 0.5rem 0;
+    color: #007bff;
+}
+
+.restaurant-card p {
+    margin: 0.2rem 0;
+    color: #333;
+}
+
+.restaurant-card a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.restaurant-card a:hover {
+    text-decoration: underline;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
