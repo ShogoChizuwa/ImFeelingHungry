@@ -29,14 +29,18 @@ const restaurantData = [
 async function main() {
   console.log(`Start seeding ...`);
 
-  // 既存のデータを更新し、なければ新規作成する 'upsert' を使います
+  // ★★★ 新しく追加した処理 ★★★
+  // 最初に既存のレストランデータをすべて削除する
+  console.log('Deleting existing restaurant data...');
+  await prisma.restaurant.deleteMany();
+  console.log('Existing data deleted.');
+
+  // データ投入処理（upsertからcreateに変更してもOKです）
   for (const r of restaurantData) {
-    const restaurant = await prisma.restaurant.upsert({
-      where: { name: r.name }, // 店名でレストランを探す
-      update: r, // 見つかったらデータを更新
-      create: r, // 見つからなければデータを作成
+    await prisma.restaurant.create({
+      data: r,
     });
-    console.log(`Created or updated restaurant with id: ${restaurant.id}`);
+    console.log(`Created restaurant: ${r.name}`);
   }
 
   console.log(`Seeding finished.`);
