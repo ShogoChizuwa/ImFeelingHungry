@@ -6,8 +6,9 @@ const prisma = new PrismaClient();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// publicディレクトリ内の静的ファイルを配信
-app.use(express.static(path.join(__dirname, 'public')));
+// コンパイル後のJSファイル(src/index.js)から見て、一つ上の階層にあるpublicディレクトリを指すように修正
+const publicPath = path.join(__dirname, '..', 'public');
+app.use(express.static(publicPath));
 
 // レストラン一覧を返すAPI
 app.get('/api/restaurants', async (req, res) => {
@@ -20,38 +21,27 @@ app.get('/api/restaurants', async (req, res) => {
   }
 });
 
-// ★★★ 新しく追加したAPI ★★★
 // ランダムに1軒おすすめのレストランを返すAPI
 app.get('/api/recommend', async (req, res) => {
   try {
-    // 1. データベースから全てのレストランデータを取得
     const restaurants = await prisma.restaurant.findMany();
-
-    // 2. レストランデータが1件もなければエラーを返す
     if (restaurants.length === 0) {
       return res.status(404).json({ error: 'おすすめできるレストランがありません。' });
     }
-
-    // 3. ランダムなインデックス番号を計算
     const randomIndex = Math.floor(Math.random() * restaurants.length);
-
-    // 4. ランダムに選ばれたレストランを返す
     const recommendedRestaurant = restaurants[randomIndex];
     res.json(recommendedRestaurant);
-
   } catch (error) {
     console.error("Failed to fetch recommendation:", error);
     res.status(500).json({ error: 'おすすめの取得中にエラーが発生しました。' });
   }
 });
 
-
 // ルートURLへのリクエストで index.html を返す
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  res.sendFile(path.join(publicPath, 'index.html'));
 });
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
-
