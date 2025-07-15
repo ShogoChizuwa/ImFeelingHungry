@@ -4,9 +4,10 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
+    "postinstall": "npx prisma generate",
     "clean": "rm -rf dist",
     "copy-assets": "cpx \"public/**/*\" dist/public",
-    "build": "npm run clean && tsc src/index.ts --outDir dist --module commonjs --target es2020 --esModuleInterop --listEmittedFiles && npm run copy-assets",
+    "build": "npm run clean && tsc --project tsconfig.json && npm run copy-assets",
     "postbuild": "echo '--- Listing dist directory after build ---' && ls -R dist",
     "start": "node dist/index.js",
     "dev": "ts-node src/index.ts"
