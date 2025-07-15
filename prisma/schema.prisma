@@ -11,12 +11,12 @@ datasource db {
 }
 
 model Restaurant {
-  id        Int      @id @default(autoincrement())
-  // 店名が重複しないように @unique を追加します
-  name      String   @unique
-  // address を tabelogUrl に変更しました
+  id         Int      @id @default(autoincrement())
+  name       String   @unique
   tabelogUrl String
-  genre     String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  genre      String
+  // ★★★ 画像URLを保存する項目を追加 ★★★
+  imageUrl   String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 }

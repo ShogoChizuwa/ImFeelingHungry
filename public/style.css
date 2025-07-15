@@ -69,6 +69,16 @@ p {
     animation: fadeIn 0.5s ease-in-out;
 }
 
+/* ★★★ 画像のスタイルを追加 ★★★ */
+.restaurant-image {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    object-fit: cover;
+}
+
 .restaurant-card h2 {
     margin: 0 0 0.5rem 0;
     color: #007bff;
